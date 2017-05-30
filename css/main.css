@@ -1,0 +1,290 @@
+/* 最外层容器的样式 */
+
+.photo_wall {
+    width: 100%;
+    height: 600px;
+    background: url('../imgs/bg.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* 照片的容器和样式 */
+
+.photo {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    opacity: 0;
+    -webkit-transition: 1s;
+    transition: 1s;
+}
+
+
+/* 每一张照片的样式 */
+
+.photo .photo_warp,
+.photo .photo_3d,
+.photo .photo_side {
+    width: 336px;
+    height: 392px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.photo .photo_warp {
+    -webkit-transition: 800ms;
+    transition: 800ms;
+    -webkit-perspective: 750px;
+    perspective: 750px;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%) scale(0.5) rotate(0);
+    transform: translate(-50%, -50%) scale(0.5) rotate(0)
+}
+
+.photo .photo_3d {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-transition: 500ms;
+    transition: 500ms;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+
+/* perspective仅仅应用在直接后代元素上，在本例中是应用在.photo_warp上。为了让所有后代元素都继承父元素的透视效果并在同样的3D空间中生效，父元素需要通 过transform-style:preserve-3d 来传递它的透视属性。如果没有transform-style，卡片的两个面都会失去立体效果，并且背面的旋转效果也会失效。 */
+
+
+/* 照片的通用样式 */
+
+.photo .photo_side {
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 26px 24px;
+    box-sizing: border-box;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+
+/* 照片的正面样式 */
+
+.photo .photo_front {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+
+.photo .photo_front p {
+    width: 286px;
+    height: 286px;
+    border: 2px solid #d8536d;
+}
+
+.photo .photo_front img {
+    width: 100%;
+    height: 100%;
+}
+
+.photo .photo_front h3 {
+    width: 166px;
+    height: 44px;
+    font: 16px/44px "微软雅黑";
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 0 0 5px 5px;
+    color: #fff;
+    background-color: #d8536d;
+}
+
+
+/* 照片的反面样式 */
+
+.photo .photo_back {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+
+.photo .photo_back p {
+    color: #d8536d;
+    font: 14px/22px "微软雅黑";
+}
+
+
+/* 控制照片翻转的样式 */
+
+.photo .front .photo_3d {
+    -webkit-transform: rotateY(0deg) translateX(0);
+    transform: rotateY(0deg) translateX(0);
+}
+
+.photo .back .photo_3d {
+    -webkit-transform: rotateY(-180deg) translateX(-100%);
+    transform: rotateY(-180deg) translateX(-100%);
+}
+
+
+/* 让照片居中的样式 */
+
+.photo .center {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%) scale(1.1) rotate(0deg);
+    transform: translate(-50%, -50%) scale(1.1) rotate(0deg);
+    z-index: 888;
+}
+
+
+/* 导航区域的样式 */
+
+.nav {
+    width: 100%;
+    height: 190px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, .5), transparent);
+    padding-top: 10px;
+    text-align: center;
+}
+
+
+/* 引入自定义字体文件 */
+
+@font-face {
+    font-family: "baobao";
+    src: url(../font/iconfont.woff) format("woff");
+}
+
+.nav .nav_warp {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50% 50%;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    cursor: pointer;
+    font-family: "baobao";
+    line-height: 30px;
+    color: rgba(255, 255, 255, 0);
+    text-align: center;
+    -webkit-transition: 500ms;
+    transition: 500ms;
+}
+
+.nav .active {
+    color: rgba(255, 255, 255, 0.5);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.nav .front {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+}
+
+.nav .back {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+
+/* 遮罩层的样式 */
+
+.photo_wall .shade {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.photo_wall .hide {
+    -webkit-transition: 800ms;
+    transition: 800ms;
+    -webkit-transform: scale(0) rotateY(360deg);
+    transform: scale(0) rotateY(360deg);
+    opacity: 0;
+}
+
+.photo_wall .shade .start {
+    color: #d8536d;
+    text-align: center;
+    font: 22px/50px '微软雅黑';
+    border: 2px solid #d8536d;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+
+/* 音乐控件 */
+
+@-webkit-keyframes rotating {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotating {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+#lanren{
+    position: absolute;
+    z-index: 888;
+    top: 90%;
+    left: 50%;
+    -webkit-transform: translateX(-22px);
+            transform: translateX(-22px);
+    opacity: 0;
+    -webkit-transition: 3s;
+    transition: 3s;
+}
+#lanren #audio-btn{
+    width: 44px;
+    height: 44px;
+    background-size: 100% 100%;
+    cursor: pointer;
+
+}
+
+#lanren .on {
+    background: url('../imgs/music_on.png') no-repeat 0 0;
+    -webkit-animation: rotating 3s linear infinite;
+    animation: rotating 3s linear infinite;
+}
+
+#lanren .off {
+    background: url('../imgs/music_off.png') no-repeat 0 0;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>宝宝电子相册</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+    <div class="photo_wall">
+        <!--照片和导航区域 -->
+        <div class="photo">
+            <!-- 照片的外层用来旋转和位移 -->
+            <div class="photo_warp" id='photo_{{id}}'>
+                <!-- 照片内层用来做3D翻转 -->
+                <div class="photo_3d">
+                    <!-- 照片的正面 -->
+                    <div class="photo_front photo_side">
+                        <p><img {{src}}="{{img}}" alt=""></p>
+                        <h3>{{title}}</h3>
+                    </div>
+                    <!-- 照片的反面 -->
+                    <div class="photo_back photo_side">
+                        <p class="desc">{{desc}}</p>
+                    </div>
+                </div>
+            </div>
+            {{split}}
+            <!-- 导航区域 -->
+            <div class="nav">
+                <span class="nav_warp" id='nav_{{id}}'>&#xe67e;</span>
+            </div>
+        </div>
+        <div id="lanren">
+            <div id="audio-btn" class="on" >
+                <audio loop="loop" src="imgs/You Are My Life.mp3" id="media" preload="preload"></audio>
+            </div>
+        </div>
+        <!-- 遮罩层 -->
+        <div class="shade">
+            <div class="start">爸爸送给宝仔的礼物</div>
+        </div>
+    </div>
+    <script src="js/data.js" type="text/javascript"></script>
+    <script src="js/tools.js" type="text/javascript"></script>
+    <script src="js/photo.js" type="text/javascript"></script>
+</body>
+
+</html>
